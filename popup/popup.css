@@ -1,0 +1,28 @@
+body {
+  width: max-content;
+  margin: 0;
+  font-size: 1rem;
+  user-select: none;
+}
+
+.popup-title {
+  font-weight: 900;
+  background-color: rgb(208, 58, 138);
+  color: white;
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+}
+
+.popup-content {
+  font-family: monospace;
+  padding: 5px;
+  margin: 20px
+}
+
+button {
+  width: 100%;
+  background-color: pink;
+  border-radius: 7px;
+  padding: 7px;
+}

@@ -22,6 +22,12 @@ const bad_words = ['hello', 'the', 'and'];
 
 let counter = 0;
 
+function doScan() {
+  walkNodes(document.body)
+  console.log(counter);
+}
+
+
 function walkNodes(node) {
   let child, next;
 
@@ -46,15 +52,13 @@ function walkNodes(node) {
 
 // Replaces the text inside a node using the replaceAll function
 function handleText(textNode) {
-  let split_words = textNode.nodeValue.split(' ');
-}
-
-
-//is textNode.nodeValue the actual word
-if (word == any word in bad words list) {
-  counter += 1
-}
-
-once at the end of html file {
-  add text to popup with the value of counter
+  let split_words = textNode.nodeValue.split(' ')
+  console.log(split_words)
+  for (let split = 0; split < split_words.length; split++){
+    for (let list_word = 0; list_word < bad_words.length; list_word++){
+      if (split === list_word){
+        counter += 1;
+      }
+    }
+  }
 }
