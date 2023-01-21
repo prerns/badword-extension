@@ -18,9 +18,6 @@
             ],
             "js": [
                 "content-scripts/block.js"
-            ],
-            "css": [
-                "content-scripts/block.css"
             ]
         }
     ]

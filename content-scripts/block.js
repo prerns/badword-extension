@@ -1,34 +1,29 @@
-
-
-// Create a block container div and append it to the document
-// const blockContainer = document.createElement("div");
-// blockContainer.classList.add("blockContainer");
-// document.body.appendChild(blockContainer);
-
-// function addBlock() {
-
-// }
-
-
-
-// // Add a message listener that sets the value of "replace"
-// chrome.runtime.onMessage.addListener((request) => {
-//   showBlocks = request["enable"];
-//   if (request["addBlock"]) addBlock();
-//   renderBlocks();
-// });
-
-const bad_words = ['hello', 'the', 'and'];
+const bad_words = ['the', 'dogs', 'and'];
 
 let counter = 0;
 
+// Add a message listener that sets the value of "replace"
+chrome.runtime.onMessage.addListener((request) => {
+  //if (request["scanPage"]) scanPage();
+  //alert("eventlistener");
+  doScan();
+});
+
 function doScan() {
-  walkNodes(document.body)
-  console.log(counter);
+  //alert("eneterd doScan");
+  walkNodes(document.body);
+  alert("number of words" + counter);
+  const para = document.createElement("p");
+  const scanResponseText = document.createTextNode("Hello");
+  para.appendChild(scanResponseText);
+  //const element = document.getElementById("popup-content");
+  const element = document.querySelector(".popup-content");
+  element.appendChild();
 }
 
 
 function walkNodes(node) {
+  //alert("entered walknodes");
   let child, next;
 
   // We use a switch statement to decide what to do based on the node type.
@@ -45,6 +40,7 @@ function walkNodes(node) {
       }
       break;
     case 3: // Text node
+      //alert("entered case 3");
       handleText(node);
       break;
   }
@@ -52,8 +48,8 @@ function walkNodes(node) {
 
 // Replaces the text inside a node using the replaceAll function
 function handleText(textNode) {
-  let split_words = textNode.nodeValue.split(' ')
-  console.log(split_words)
+  let split_words = textNode.nodeValue.split(' ');
+  //console.log(split_words);
   for (let split = 0; split < split_words.length; split++){
     for (let list_word = 0; list_word < bad_words.length; list_word++){
       if (split === list_word){
