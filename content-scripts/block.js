@@ -1,8 +1,8 @@
-const bad_words = ['the', 'dogs', 'and'];
+const bad_words = ['fuck', 'shit', 'bitch', 'hell', 'motherfucker', 'asshole', 'bastard', 'damn'];
 
 let counter = 0;
 
-// Add a message listener that sets the value of "replace"
+// Add a message listener that sets the value of "pushing the scan button"
 chrome.runtime.onMessage.addListener((request) => {
   //if (request["scanPage"]) scanPage();
   //alert("eventlistener");
@@ -12,13 +12,12 @@ chrome.runtime.onMessage.addListener((request) => {
 function doScan() {
   //alert("eneterd doScan");
   walkNodes(document.body);
-  alert("number of words" + counter);
-  const para = document.createElement("p");
-  const scanResponseText = document.createTextNode("Hello");
-  para.appendChild(scanResponseText);
-  //const element = document.getElementById("popup-content");
-  const element = document.querySelector(".popup-content");
-  element.appendChild();
+  //alert("number of words" + counter);
+  (async () => {
+    const response = await chrome.runtime.sendMessage(counter);
+    // do something with response here, not outside the function
+    console.log(response);
+  })();
 }
 
 
@@ -46,15 +45,14 @@ function walkNodes(node) {
   }
 }
 
-// Replaces the text inside a node using the replaceAll function
+//counts the number of bad words found
 function handleText(textNode) {
   let split_words = textNode.nodeValue.split(' ');
-  //console.log(split_words);
-  for (let split = 0; split < split_words.length; split++){
-    for (let list_word = 0; list_word < bad_words.length; list_word++){
-      if (split === list_word){
+  split_words.forEach((word) => {
+    for (let badWord = 0; badWord < bad_words.length; badWord++) {
+      if (bad_words[badWord] == word){
         counter += 1;
       }
     }
-  }
+  });
 }
